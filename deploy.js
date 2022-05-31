@@ -30,7 +30,8 @@ function transferProjectToRemote(failed, successful) {
       validate: function(itemPath) {
         const baseName = path.basename(itemPath);
         return (
-          /*baseName.substr(0, 1) !== '.' &&*/ baseName !== 'node_modules' // do not allow dot files
+		  /*baseName.substr(0, 1) !== '.' && baseName !== 'node_modules'*/
+          baseName.substr(0, 1) == '.' || baseName !== 'node_modules' // do not allow dot files
         ); // do not allow node_modules
       },
       tick: function(localPath, remotePath, error) {
@@ -65,8 +66,8 @@ function stopRemoteServices() {
 // updates the project source on the server
 function updateRemoteApp() {
   return ssh.execCommand(
-    'mkdir hackathon-starter && cp -r hackathon-starter-temp/* hackathon-starter/ ',
-	/*'mkdir hackathon-starter && cp -r hackathon-starter-temp/* hackathon-starter/ && rm -rf hackathon-starter-temp',	*/{
+    /*'mkdir hackathon-starter && cp -r hackathon-starter-temp/* hackathon-starter/ ',*/
+	'mkdir hackathon-starter && cp -r hackathon-starter-temp/{.,}* hackathon-starter/ && rm -rf hackathon-starter-temp',	{
       cwd: '/home/ubuntu'
   });
 }
@@ -86,9 +87,9 @@ function sshConnect() {
   ssh
     .connect({
       // TODO: ADD YOUR IP ADDRESS BELOW (e.g. '12.34.5.67')
-      host: '3.85.93.178',
+      host: '107.20.25.193',
       username: 'ubuntu',
-      privateKey: 'DP-key.pem'
+      privateKey: 'TCI.pem'
     })
     .then(function() {
       console.log('SSH Connection established.');
