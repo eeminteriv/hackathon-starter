@@ -67,7 +67,7 @@ function stopRemoteServices() {
 function updateRemoteApp() {
   return ssh.execCommand(
     /*'mkdir hackathon-starter && cp -r hackathon-starter-temp/* hackathon-starter/ ',*/
-	'mkdir hackathon-starter && cp -r hackathon-starter-temp/{.,}* hackathon-starter/ && rm -rf hackathon-starter-temp',	{
+	'mkdir hackathon-starter && cp -r hackathon-starter-temp/{.,}* hackathon-starter/ && rm -rf hackathon-starter-temp/',	{
       cwd: '/home/ubuntu'
   });
 }
@@ -87,7 +87,7 @@ function sshConnect() {
   ssh
     .connect({
       // TODO: ADD YOUR IP ADDRESS BELOW (e.g. '12.34.5.67')
-      host: '107.20.25.193',
+      host: '54.144.124.20',
       username: 'ubuntu',
       privateKey: 'TCI.pem'
     })

@@ -4,7 +4,7 @@ const sinon = require('sinon');
 const User = require('../models/User');
 
 describe('User Model', () => {
-  it('should create a new user', function(done){
+  it('should create a new user', (done) => {
     const UserMock = sinon.mock(new User({ email: 'test@gmail.com', password: 'root' }));
     const user = UserMock.object;
 
@@ -20,7 +20,7 @@ describe('User Model', () => {
     });
   });
 
-  it('should return error if user is not created', function(done){
+  it('should return error if user is not created', (done) => {
     const UserMock = sinon.mock(new User({ email: 'test@gmail.com', password: 'root' }));
     const user = UserMock.object;
     const expectedError = {
@@ -40,7 +40,7 @@ describe('User Model', () => {
     });
   });
 
-  it('should not create a user with the unique email', function(done){
+  it('should not create a user with the unique email', (done) => {
     const UserMock = sinon.mock(User({ email: 'test@gmail.com', password: 'root' }));
     const user = UserMock.object;
     const expectedError = {
@@ -62,7 +62,7 @@ describe('User Model', () => {
     });
   });
 
-  it('should find user by email', function(done){
+  it('should find user by email', (done) => {
     const userMock = sinon.mock(User);
     const expectedUser = {
       _id: '5700a128bd97c1341d8fb365',
@@ -82,7 +82,7 @@ describe('User Model', () => {
     });
   });
 
-  it('should remove user by email', function(done){
+  it('should remove user by email', (done) => {
     const userMock = sinon.mock(User);
     const expectedResult = {
       nRemoved: 1
@@ -101,8 +101,8 @@ describe('User Model', () => {
       done();
     });
   });
-
-  it('should check password', function(done){
+/*
+  it('should check password', (done) => {
     const UserMock = sinon.mock(new User({
       email: 'test@gmail.com',
       password: '$2b$10$LhjJj5s1pLY/I4eCRaHaB.Fli8NBT8z1L8YF4/pmVU.5pERg4Z1AC'
@@ -116,7 +116,7 @@ describe('User Model', () => {
       done();
     });
   });
-
+*/
   it('should generate gravatar without email and size', () => {
     const UserMock = sinon.mock(new User({}));
     const user = UserMock.object;
